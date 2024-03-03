@@ -1,0 +1,12 @@
+
+catagories === main ,  desserts , Appetizers
+title           price   catagories
+Beef Pasta        8         1
+Tomato Pasta      6         1
+Brushetta         9         1
+Lemon Dessert     4.5       2
+Tiramisu          6         2
+Strawberry Cheesecake 6.5    2
+Grilled Fish      5.5        3
+Greek Salad       7.5        3
+Cheese Sticks     5.5        3
