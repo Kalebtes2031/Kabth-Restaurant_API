@@ -2,16 +2,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('menu-items/',views.menuitems.as_view(),name='menu_items'),
-    path('menu-items/<int:pk>',views.SingleMenuItem.as_view()),
-    path('category/',views.categories.as_view()),
-    path('category/<int:pK>',views.SingleCategory.as_view()),
-    path('cart/',views.Carts.as_view()),
-    path('order/',views.Orders.as_view()), 
-    path('orderitems/',views.OrderItems.as_view()), 
-    path('groups/manager/assign/',views.assignusertomanager),
-    path('groups/manager/users/',views.accessingmangergroup),
-    path('token/login/',views.loginview),
-    path('groups/delivery_crew/assign/',views.assignusertodeliverycrew),
+    path('menu-items/', views.MenuItemView.as_view()),
+    path('menu-items/<int:pk>/', views.SingleMenuItemView.as_view()),
+    path('cart/', views.Carts.as_view()),
+    path('orders/', views.OrdersView.as_view()),
+    path('orders/<int:pk>/', views.SingleOrderView.as_view()),
+    path('groups/manager/users/', views.ManagerUsersView.as_view()),
+    path('groups/manager/users/<int:pk>/', views.SingleManagerUserView.as_view()),
+    path('groups/delivery-crew/users/', views.DeliveryCrewView.as_view()),
+    path('groups/delivery-crew/users/<int:pk>/', views.SingleDeliveryCrewView.as_view()),
 
 ]
