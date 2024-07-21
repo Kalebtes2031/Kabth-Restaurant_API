@@ -60,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'LittleLemon.wsgi.application'
+WSGI_APPLICATION = 'KabthRestaurant.wsgi.application'
 
 
 # Database
