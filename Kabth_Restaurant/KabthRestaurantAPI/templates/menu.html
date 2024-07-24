@@ -1,0 +1,24 @@
+<!-- templates/menu.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Menu</h1>
+<table class="menu-table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in menu %}
+        <tr>
+            <td >{{ item.title }}</td>
+            <td class="menu-price">${{ item.price }}</td>
+            <td class="menu-item"><a href="{% url 'menu_item' pk=item.pk %}">View Details</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -65,13 +65,14 @@ class UserOrdersSerializer(serializers.ModelSerializer):
     date = serializers.DateTimeField(write_only=True, default=datetime.now)
     order_items = serializers.SerializerMethodField()
     delivery_crew = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.filter(groups__name='Delivery Crew'),
+        queryset=User.objects.filter(groups__name='Delivery crew'),
         required=False
     )
     class Meta:
         model = Order
         fields = ['id', 'user', 'delivery_crew', 'status', 'total', 'Date', 'date', 'order_items']
         extra_kwargs = {
+            'user': {'read_only': True},
             'total': {'read_only': True}
         }
 

@@ -1,0 +1,27 @@
+<!-- templates/cart.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Your Cart</h1>
+<table class="cart-table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.menuitem.title }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.unit_price }}</td>
+            <td>${{ item.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'orders' %}" class="btn">Place Order</a>
+{% endblock %}

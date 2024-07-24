@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <article id="hero">
+      <h1 class="heading_shadow">SPECIAL OFFER</h1>
+      <p>
+        30% Off This Weekend 
+      </p>
+      <a href="" class="cta"> Book now </a>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h2>Our New Menu</h2>
+      <a href="{% url 'menu' %}">
+        <img src="{% static 'img/menupic.jpg' %}">
+      </a>
+      <p>
+        Our menu consists of 12-15 seasonal items based on Italian, Indian, Japanese, American, French, Chinese and Mexican culture.
+      </p>
+      <p>
+        <a href="{% url 'menu' %}">See our new menu</a>
+      </p>
+    </article>
+    <article>
+      <h2>Book a table</h2>
+      <a href="">
+        <img src="{% static 'img/bookpic.jpg' %}">
+      </a>
+      <p>
+        Reserve your table for an Italian, Indian, Japanese, American, French, Chinese and Mexican dining experience.
+      </p>
+      <p>
+        <a href="">Book your table now</a>
+      </p>
+    </article>
+    <article>
+      <h2>Opening Hours</h2>
+      <img src="{% static 'img/chefpic.jpg' %}">
+      <p>
+        The Kabth Restaurant is open 7 days a week. 
+      </p>
+      <ul>
+        <li>Mon - Fri: 7am - 10pm</li>
+        <li>Sat: 9am - 12am</li>
+        <li>Sun: 9am -11pm</li>
+      </ul>
+    </article>
+  </section>
+{% endblock %}

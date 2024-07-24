@@ -1,0 +1,69 @@
+{% load static %}
+<header>
+    <img src="{% static 'img/logopic.png' %}" alt="Logo"/>
+</header>
+<script>
+    function logout() {
+        console.log('Logout button clicked');
+        fetch('/logout/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'include'
+        })
+        .then(response => {
+            console.log('Logout response status:', response.status);
+            if (response.ok) {
+                console.log('Logout successful');
+
+                // Clear client-side tokens or session data
+                localStorage.removeItem('auth_token');
+                sessionStorage.removeItem('auth_token');
+
+                // Clear cookies
+                document.cookie = 'csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+                document.cookie = 'sessionid=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+
+                console.log('Client-side data cleared');
+
+                // Redirect to login page only once
+                window.location.href = '/login/';
+            } else {
+                alert('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error during logout:', error);
+            alert('Logout error');
+        });
+    }
+
+    // Add an event listener to ensure the logout function is called only once
+    document.addEventListener('DOMContentLoaded', function () {
+        const logoutButton = document.querySelector('button[onclick="logout()"]');
+        if (logoutButton) {
+            logoutButton.removeAttribute('onclick'); // Remove inline onclick to avoid duplicate calls
+            logoutButton.addEventListener('click', logout);
+        }
+    });
+</script>
+
+
+
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="#">Booking</a></li>
+        {% if user.is_authenticated %}
+            <li><button onclick="logout()">Logout</button></li>
+        {% else %}
+            <li><a href="/login/">Login</a></li>
+            <li><a href="/register/">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+

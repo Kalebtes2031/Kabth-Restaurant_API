@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <article>
+      <h1>About Us</h1>
+      <div class="row">
+        <div class="column">
+          <p>
+            Welcome to Kabth Restaurant, where culinary excellence meets warm hospitality. At Kabth, we take pride in offering a delightful dining experience that blends flavorful dishes with a cozy ambiance, perfect for any occasion.
+          </p>
+          <h3>Our Cuisine</h3>
+          <p>
+            Indulge in a culinary journey inspired by global flavors. From our mouthwatering sushi selections to our authentic Italian pasta dishes, each bite at Kabth is a celebration of diverse tastes and high-quality ingredients. Whether you're craving the comforting flavors of tacos or the richness of Indian curry, our menu offers something to satisfy every palate.
+          </p>
+  
+          <p>
+            The restaurant has a rustic and relaxed atmosphere with moderate
+            prices, making it a popular place for a meal any time of the day.
+          </p>
+          <h3>Our Commitment to Excellence</h3>
+          <p>
+            At Kabth Restaurant, we are dedicated to delivering exceptional service and exceeding your expectations with every visit. Our team of talented chefs crafts each dish with passion and precision, ensuring that every plate that leaves our kitchen is a masterpiece of flavor and presentation.
+          </p>
+          <h3>Reservations</h3>
+          <p>
+            Planning a special meal with friends or family? Reserve your table at Kabth Restaurant today! Simply fill out the form below with the number of guests and your preferred date and time, and we'll take care of the rest. Whether you're joining us for brunch on the weekend or a cozy dinner during the week, we look forward to welcoming you to Kabth.
+
+          </p>
+        </div>
+        <div class="column">
+          <figure class="figure">
+            <img
+              src="{% static 'img/restaurant_insidepic.jpg' %}"
+              alt="restaurant inside view"
+            />
+            <figcaption class="figure-caption">
+              Come to Kabth Restaurant
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+  </section>
+{% endblock %}
