@@ -157,6 +157,27 @@ class Carts(generics.ListCreateAPIView):
         cart_items = Cart.objects.filter(user=self.request.user).select_related('menuitem')
         return render(request, 'cart.html', {"cart_items": cart_items})
     
+@login_required
+def update_cart_item(request, item_id):
+    cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
+
+    if request.method == 'POST':
+        new_quantity = request.POST.get('quantity')
+
+        if new_quantity:
+            try:
+                new_quantity = int(new_quantity)
+                if new_quantity > 0:
+                    unit_price = cart_item.menuitem.price
+                    cart_item.quantity = new_quantity
+                    cart_item.price = new_quantity * unit_price
+                    cart_item.save()
+                    return redirect('cart')
+            except ValueError:
+                pass
+
+    return render(request, 'update_cart_item.html', {'cart_item': cart_item})
+
 
 @login_required
 def delete_cart_item(request, item_id):

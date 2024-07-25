@@ -17,7 +17,8 @@
                 <th>Quantity</th>
                 <th>Unit Price</th>
                 <th>Total Price</th>
-                <th>Action</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,9 @@
                 <td>{{ item.quantity }}</td>
                 <td>${{ item.menuitem.price }}</td>
                 <td>${{ item.price }}</td>
+                <td>
+                    <a class="btn-update" href="{% url 'update_cart_item' item.id %}">Update</a>
+                </td>
                 <td>
                     <form action="{% url 'delete_cart_item' item.id %}" method="post">
                         {% csrf_token %}
@@ -41,6 +45,7 @@
     <form action="{% url 'orders' %}" method="post" class="place-order-form">
         {% csrf_token %}
         <button type="submit" class="place-order-button">Place Order</button>
+        <a class="btn-add-menu-item" href="{% url 'menu' %}">Add Menu Item</a>
     </form>
     {% else %}
     <p class="empty-cart-message">Your cart is empty. Add items to your cart to place an order.</p>
