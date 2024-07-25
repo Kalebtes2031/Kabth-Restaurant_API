@@ -1,27 +1,50 @@
-<!-- templates/cart.html -->
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<h1>Your Cart</h1>
-<table class="cart-table">
-    <thead>
-        <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart_items %}
-        <tr>
-            <td>{{ item.menuitem.title }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>${{ item.unit_price }}</td>
-            <td>${{ item.price }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<a href="{% url 'orders' %}" class="btn">Place Order</a>
+<span class="back">
+    <a href="{% url 'home' %}">Home</a> /
+    <a href="{% url 'menu' %}">Menu</a> /
+    cart
+</span>
+<section class="menu-item-section">
+    <article class="menu-item-article">
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>Menu Item</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.menuitem.title }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.menuitem.price }}</td>
+                <td>${{ item.price }}</td>
+                <td>
+                    <form action="{% url 'delete_cart_item' item.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <form action="{% url 'orders' %}" method="post" class="place-order-form">
+        {% csrf_token %}
+        <button type="submit" class="place-order-button">Place Order</button>
+    </form>
+    {% else %}
+    <p class="empty-cart-message">Your cart is empty. Add items to your cart to place an order.</p>
+    {% endif %}
+</article>
+</section>
 {% endblock %}

@@ -37,33 +37,54 @@ a:hover {
     text-decoration: underline;
 }
 
-header img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
+header {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: #0cda95;
+    margin-bottom: 1rem;
+    height: 80px; /* Adjust height to fit content */
+    position: relative; /* Allows absolute positioning for the logout button */
 }
 
+.header-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    flex: 0 0 auto;
+    margin-right: auto; /* Pushes the nav and logout button to the right */
+}
+
+.logo img {
+    width: 60px; /* Adjust as needed */
+    height: 60px; /* Adjust as needed */
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 nav {
-    background-color: #0cda95;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-bottom: 0px;
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center nav items horizontally */
 }
 
 nav ul {
     list-style: none;
     font-size: 1.5rem;
-    text-align: center;
-    padding-inline-start: 0rem;
-    margin-bottom: 0px;
+    display: flex;
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 nav ul li {
-    display: inline-block;
-    margin: 0.5rem;
+    margin: 0 0.5rem;
+    margin-right: 25px;
 }
 
 nav ul a {
@@ -78,6 +99,31 @@ nav ul a:active {
 nav ul a:hover {
     text-decoration: underline;
     text-decoration-thickness: 0.1rem;
+}
+
+.logout-button {
+    position: absolute;
+    right: 1rem; /* Adjust spacing from the right edge as needed */
+    background-color: #EDEFEE;
+    color: #0cda95;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    top: 50%; /* Center vertically within the header */
+    transform: translateY(-50%); /* Adjust position to truly center it */
+}
+
+.logout-button:hover {
+    background-color: #0cda95;
+    color: #EDEFEE;
+    text-decoration: underline;
+}
+
+.logout-button:active {
+    transform: scale(0.98);
 }
 
 section {
@@ -100,7 +146,13 @@ article ul {
     list-style: none;
 }
 
-main article {
+article {
+    border: 1px solid #EDEFEE;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+main {
+    flex: 1;
     border: 1px solid #EDEFEE;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -176,10 +228,12 @@ input{
 
 footer {
     background-color: #EDEFEE;
-    padding: 1rem;
+    padding: 10px 0;
     display: flex;
+    position: relative;
+    bottom: 0;
     gap: 2rem 1rem;
-    margin-top: 28px;
+    margin-top: auto;
 }
 
 footer img {
@@ -309,6 +363,7 @@ footer p {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 25px;
   }
   
   .login-button:hover {
@@ -321,6 +376,258 @@ footer p {
     text-align: center;
     margin-top: 10px;
   }
+/* Ensure the container has a column layout */
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align the contents horizontally */
+    padding: 20px; /* Optional: Add some padding for better spacing */
+}
+
+/* Style for the h1 element */
+.cart-container h1 {
+    margin-bottom: 20px; /* Space between heading and table */
+}
+
+/* Style for the table */
+.cart-table {
+    width: 100%; /* Make table take up full width of the container */
+    max-width: 800px; /* Limit the max-width to keep it manageable */
+    border-collapse: collapse; /* Remove double borders */
+    margin-bottom: 20px; /* Space between table and button */
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 10px; /* Space inside table cells */
+    text-align: left; /* Align text to the left */
+    border-bottom: 1px solid #ddd; /* Light border for rows */
+}
+
+/* Style for the Place Order button */
+.place-order-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Blue background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.place-order-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.orders-table th, .orders-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+.orders-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.orders-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.orders-table a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.orders-table a:hover {
+    text-decoration: underline;
+}
+
+.empty-message {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}
+.order-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-items-table th, .order-items-table td {
+    border: 1px solid #a19e9e;
+    padding: 8px;
+    text-align: center;
+}
+
+.order-items-table th {
+    background-color: #dbd8d8;
+    font-weight: bold;
+}
+
+.order-items-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.order-items-table tr:hover {
+    background-color: #f1f1f1;
+}
+.order-details {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+.order-details h1 {
+    margin-top: 0;
+}
+/* Styling for the menu item section */
+.menu-item-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.menu-item-article {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.menu-item-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.breadcrumb-nav {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+    
+}
+
+.breadcrumb-nav a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb-nav a:hover {
+    text-decoration: underline;
+}
+
+.menu-item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.menu-item-details {
+    flex: 1;
+}
+
+.menu-item-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.menu-item-price {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.add-to-cart-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-to-cart-form label {
+    margin-bottom: 5px;
+}
+
+.add-to-cart-form input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.btn-add-to-cart {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 200px;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #218838;
+}
+
+.menu-item-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item-image img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.empty-cart-message {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+.back{
+    margin-top: 25px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
 @media (max-width: 800px) {
     section {
         flex-direction: column;   

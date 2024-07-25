@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Your Orders</h1>
+<table class="orders-table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.date }}</td>
+            <td>${{ order.total }}</td>
+            <td>
+                {% if order.status %}
+                    Ordered
+                {% else %}
+                    Pending
+                {% endif %}
+            </td>
+            <td><a href="{% url 'order_item' order.id %}">View Details</a></td>
+            <td>
+                {% if order.status %}
+                    <!-- Status is 'Ordered', show message instead of delete button -->
+                    <span class="">Already ordered.</span>
+                {% else %}
+                    <!-- Status is 'Pending', show delete button -->
+                    <form action="{% url 'delete_order' order.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="empty-message">No orders found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

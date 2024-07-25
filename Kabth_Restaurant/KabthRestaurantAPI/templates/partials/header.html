@@ -1,7 +1,29 @@
 {% load static %}
 <header>
-    <img src="{% static 'img/logopic.png' %}" alt="Logo"/>
+    <div class="header-container">
+        <div class="logo">
+            <img src="{% static 'img/logopic.png' %}" alt="Logo"/>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'menu' %}">Menu</a></li>
+                <li><a href="#">Booking</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'orders' %}">Orders</a></li>
+                <li><a href="{% url 'cart' %}">Carts</a></li>
+
+                <li><button class="logout-button" onclick="logout()">Logout</button></li>
+                {% else %}
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/register/">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
 </header>
+    
 <script>
     function logout() {
         console.log('Logout button clicked');
@@ -15,7 +37,7 @@
         })
         .then(response => {
             console.log('Logout response status:', response.status);
-            if (response.ok) {
+            if (response.status === 204) {
                 console.log('Logout successful');
 
                 // Clear client-side tokens or session data
@@ -31,7 +53,7 @@
                 // Redirect to login page only once
                 window.location.href = '/login/';
             } else {
-                alert('Logout failed');
+                alert('Logout failed'+ response.statusText);
             }
         })
         .catch(error => {
@@ -42,28 +64,10 @@
 
     // Add an event listener to ensure the logout function is called only once
     document.addEventListener('DOMContentLoaded', function () {
-        const logoutButton = document.querySelector('button[onclick="logout()"]');
+        const logoutButton = document.querySelector('.logout-button');
         if (logoutButton) {
-            logoutButton.removeAttribute('onclick'); // Remove inline onclick to avoid duplicate calls
+            // logoutButton.removeAttribute('onclick'); // Remove inline onclick to avoid duplicate calls
             logoutButton.addEventListener('click', logout);
         }
     });
 </script>
-
-
-
-<nav>
-    <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'menu' %}">Menu</a></li>
-        <li><a href="#">Booking</a></li>
-        {% if user.is_authenticated %}
-            <li><button onclick="logout()">Logout</button></li>
-        {% else %}
-            <li><a href="/login/">Login</a></li>
-            <li><a href="/register/">Register</a></li>
-        {% endif %}
-    </ul>
-</nav>
-
